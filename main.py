@@ -19,7 +19,7 @@ from keras.layers import Lambda
 from setup_mnist import MNIST, MNISTModel
 
 import Utils as util
-from aen_attack import AEADEN
+from aen_CEM import AEADEN
 
 
 def main(args):
