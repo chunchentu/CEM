@@ -28,7 +28,6 @@ def main(args):
         np.random.seed(1211)
 
         image_id = args['img_id']
-        target_label = args['target_label']
         arg_max_iter = args['maxiter']
         arg_b = args['binary_steps']
         arg_init_const = args['init_const']
@@ -37,9 +36,14 @@ def main(args):
         arg_beta = args['beta']
         arg_gamma =args['gamma']
         
+
+
         AE_model = util.load_AE("mnist_AE_1")
         data, model =  MNIST(), MNISTModel("models/mnist", sess, False)
 
+        orig_prob, orig_class, orig_prob_str = util.model_prediction(model, np.expand_dims(data.test_data[image_id], axis=0))
+        target_label = orig_class
+        print("Image:{}, infer label:{}".format(image_id, target_label))
         orig_img, target = util.generate_data(data, image_id, target_label)
 
         attack = AEADEN(sess, model, mode = arg_mode, AE = AE_model, batch_size=1, kappa=arg_kappa, init_learning_rate=1e-2,
@@ -47,12 +51,6 @@ def main(args):
 
         adv_img = attack.attack(orig_img, target)
 
-        # if type(adv_img) is list:
-        #     adv_img = adv_img[0]
-        # if len(adv_img.shape) == 3:
-        #     adv_img = adv_img.reshape((1,) + adv_img.shape)
-
-        orig_prob, orig_class, orig_prob_str = util.model_prediction(model, orig_img)
         adv_prob, adv_class, adv_prob_str = util.model_prediction(model, adv_img)
         delta_prob, delta_class, delta_prob_str = util.model_prediction(model, orig_img-adv_img)
 
@@ -73,7 +71,6 @@ if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--img_id", type=int)
-    parser.add_argument("-t", "--target_label", type=int)
     parser.add_argument("-m", "--maxiter", type=int, default=1000)
     parser.add_argument("-b", "--binary_steps", type=int, default=9)
     parser.add_argument("-c", "--init_const", type=float, default=10.0)
