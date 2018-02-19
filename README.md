@@ -1,7 +1,7 @@
 # CEM
 The implementation for Constrastive Explanations Method (CEM)
 
-To find the pertinent positives (PP), 
+To find the pertinent positive (PP) of an instance, 
 
 ```python3
 python3 main.py -i 2953 --mode PP --kappa 20 --gamma 100
@@ -13,7 +13,7 @@ This would find the PP of image ID 2953 in the test images from the MNIST datase
 
 From left to right: the original image and the pertinent positive component. This PP in Image 2953 is sufficient to be classified as 5.
 
-To find the pertinent negatives (PN),
+To find the pertinent negative (PN) of an instance,
 
 ```python3
 python3 main.py -i 340 --mode PN --kappa 20 --gamma 100
@@ -26,4 +26,4 @@ This would find the PN of image ID 340 in the test images from the MNIST dataset
 
 From left to right: the original image, the pertinent negative component and the image composed of the original image and PN. If we add PN to Image 340, it would be classified as 5.
 
-The arugment `kappa` and `gamma` are tuning parameters for the optimization setup. For more details, please refer to the paper.
+The arugment `kappa` and `gamma` are tuning parameters for the optimization setup. Both PP and PN are used to explain the model prediction results. For more details, please refer to the paper.
