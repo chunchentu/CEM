@@ -24,6 +24,6 @@ This would find the PN of image 340 in the MNIST dataset.
 ![Results_PN_delta](/Results/PN_ID340_Gamma_100.0/Delta_id340_kappa20.0_Orig3_Adv5_Delta8.png)
 ![Results_PN_adv](/Results/PN_ID340_Gamma_100.0/Adv_id340_kappa20.0_Orig3_Adv5_Delta8.png)
 
-From left to right: the original image, the pertinent negative component and the image composed of the original image and PN. Image 340 is classified as 3 because the PN is missing. If we add PN to Image 340, it would be classified as 5.
+From left to right: the original image, the pertinent negative component and the image composed of the original image and PN. If we add PN to Image 340, it would be classified as 5.
 
 The arugment `kappa` and `gamma` are tuning parameters for the optimization setup. For more details, please refer to the paper.
