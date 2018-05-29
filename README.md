@@ -3,7 +3,7 @@ The implementation for Constrastive Explanations Method (CEM)
 
 To find the pertinent positive (PP) of an instance, 
 
-```python3
+```shell
 python3 main.py -i 2953 --mode PP --kappa 10 --gamma 100
 ```
 This would find the PP of image ID 2953 in the test images from the MNIST dataset.
@@ -15,7 +15,7 @@ From left to right: the original image and the pertinent positive component. Thi
 
 To find the pertinent negative (PN) of an instance,
 
-```python3
+```shell
 python3 main.py -i 340 --mode PN --kappa 10 --gamma 100
 ```
 This would find the PN of image ID 340 in the test images from the MNIST dataset.
